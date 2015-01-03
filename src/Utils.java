@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
+ * Clase que contiene funciones utiles.
  * 
  * @author Antonio Toro
  */
