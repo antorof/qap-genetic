@@ -31,4 +31,13 @@ public class Cromosoma extends ArrayList<Integer> {
 	public Cromosoma(Cromosoma cromosoma) {
 		super(cromosoma);
 	}
+	
+	@Override
+	public String toString() {
+		String resultado = "";
+		for (Integer alelo : this) {
+			resultado += alelo + " ";
+		}
+		return resultado;
+	}
 }

@@ -20,19 +20,59 @@ public class Evolucion {
 		Cromosoma mutado = new Cromosoma(cromosoma);
 		Random r = new Random();
 		
-		int indice1 = r.nextInt(tamanio-1),
-		    indice2 = r.nextInt(tamanio-1);
+		int ptoCorte1 = r.nextInt(tamanio),
+		    ptoCorte2 = r.nextInt(tamanio);
 
-		Collections.swap(cromosoma, indice1, indice2);
+		Collections.swap(mutado, ptoCorte1, ptoCorte2);
 		
 		return mutado;
 	}
 	
-	public static Cromosoma cruzar(Cromosoma p1, Cromosoma p2) {
-		int tamanio = p1.size();
+	/**
+	 * Cruza dos cromosomas.
+	 * El hijo hereda del padre los alelos que se encuentren entre dos puntos de corte.
+	 * El resto de alelos se rellenan desde el principio con los alelos de la madre 
+	 * (teniendo en cuenta el no repetir) empezando por el primer punto de corte.
+	 * 
+	 * @param padre Cromosoma padre
+	 * @param madre Cromosoma madre
+	 * @return Cromosoma que resulta de cruzar padre y madre
+	 */
+	public static Cromosoma cruzar(Cromosoma padre, Cromosoma madre) {
+		int tamanio = padre.size();
 		Cromosoma nuevo = new Cromosoma(tamanio);
+		Random r = new Random();
 		
-		//TODO Hacer el cruce y obtener el nuevo cromosoma
+		int ptoCorte1 = r.nextInt(tamanio),
+		    ptoCorte2 = r.nextInt(tamanio);
+		
+		if (ptoCorte1 > ptoCorte2) {
+			int aux = ptoCorte1;
+			ptoCorte1 = ptoCorte2;
+			ptoCorte2 = aux;
+		}
+		
+		for (int i = ptoCorte1; i <= ptoCorte2; i++)
+			nuevo.set(i, padre.get(i));
+		
+		System.out.println(ptoCorte1 + " - " + ptoCorte2);
+		System.out.println(nuevo);
+		
+		int i = ptoCorte1, 
+		    j = 0;
+		while ( nuevo.contains(null) ) {
+			if (!nuevo.contains(madre.get(i)) && nuevo.get(j)==null) {
+				nuevo.set(j, madre.get(i));
+				j++;
+				i = (i+1)%tamanio;
+			}
+			else if (nuevo.get(j)!=null) {
+				j++;
+			}
+			else {
+				i = (i+1)%tamanio;
+			}
+		}
 		
 		return nuevo;
 	}
