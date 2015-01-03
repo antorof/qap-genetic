@@ -42,6 +42,17 @@ public class Cromosoma extends ArrayList<Integer> {
 		super(alelos);
 	}
 	
+	/**
+	 * Construye un cromosoma a partir de los alelos introducidos
+	 * como parametros del constructor.
+	 * 
+	 * @param alelos Alelos del cromosoma
+	 */
+	public Cromosoma(int... alelos) {
+		for (int i : alelos)
+			this.add(i);
+	}
+	
 	@Override
 	public String toString() {
 		String resultado = "";
