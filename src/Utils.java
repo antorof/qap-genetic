@@ -31,4 +31,10 @@ public class Utils {
 		
 		return permutacion;
 	}
+	
+	public static void print(List<?> lista) {
+		for (Object elem : lista) {
+			System.out.println(elem);
+		}
+	}
 }
