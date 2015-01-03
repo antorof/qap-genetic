@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,37 +15,32 @@ public class Casos {
 	private ArrayList<ArrayList<Integer>> flujos;
 	private ArrayList<ArrayList<Integer>> distancias;
 	
-	public Casos(String nombreFichero) {
+	public Casos(String nombreFichero) throws FileNotFoundException {
 		this.nombreFichero = nombreFichero;
 		flujos = new ArrayList<ArrayList<Integer>>();
 		distancias = new ArrayList<ArrayList<Integer>>();
 		
 		// Leemos el archivo de datos
-		try {
-			Scanner sc = new Scanner(new File(nombreFichero));
-			
-			// Leemos el tamanio del problema
-			tamanio = sc.nextInt();
-			
-			// Leemos la matriz de flujos
-			for (int i = 0; i < tamanio; i++) {
-				flujos.add(new ArrayList<Integer>());
-				for (int j = 0; j < tamanio; j++)
-					flujos.get(i).add(sc.nextInt());
-			}
-			
-			// Leemos la matriz de distancias
-			for (int i = 0; i < tamanio; i++) {
-				distancias.add(new ArrayList<Integer>());
-				for (int j = 0; j < tamanio; j++)
-					distancias.get(i).add(sc.nextInt());
-			}
+		Scanner sc = new Scanner(new File(nombreFichero));
+		
+		// Leemos el tamanio del problema
+		tamanio = sc.nextInt();
+		
+		// Leemos la matriz de flujos
+		for (int i = 0; i < tamanio; i++) {
+			flujos.add(new ArrayList<Integer>());
+			for (int j = 0; j < tamanio; j++)
+				flujos.get(i).add(sc.nextInt());
+		}
+		
+		// Leemos la matriz de distancias
+		for (int i = 0; i < tamanio; i++) {
+			distancias.add(new ArrayList<Integer>());
+			for (int j = 0; j < tamanio; j++)
+				distancias.get(i).add(sc.nextInt());
+		}
 
-			sc.close();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		sc.close();
 	}
 
 	public int getTamanio() {
