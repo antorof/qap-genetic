@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase que modela un cromosoma.
@@ -30,6 +31,15 @@ public class Cromosoma extends ArrayList<Integer> {
 	 */
 	public Cromosoma(Cromosoma cromosoma) {
 		super(cromosoma);
+	}
+	
+	/**
+	 * Construye un cromosoma a partir de una lista de alelos.
+	 * 
+	 * @param alelos Lista de alelos
+	 */
+	public Cromosoma(List<Integer> alelos) {
+		super(alelos);
 	}
 	
 	@Override
