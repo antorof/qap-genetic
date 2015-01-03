@@ -8,7 +8,7 @@ public class qapgenetic {
 
 	public static void main(String[] args) {
 		if(args.length != 2) {
-			System.err.println("N\u00FAmero de argumentos incorrectos");
+			System.err.println("N\u00FAmero de argumentos incorrecto");
 			System.err.println("Uso: java " + qapgenetic.class.getName() + " <fichero> <tama\u00F1o poblaci\u00F3n>");
 			System.exit(1);
 		}
@@ -31,8 +31,8 @@ public class qapgenetic {
 		for(int i = 0; i < tamPoblacion; i++)
 			poblacion.add(new Cromosoma(Utils.generarPermutacion(0, casos.getTamanio(), casos.getTamanio())));
 
-//		AlgoritmoGenetico ag = new AlgoritmoGenetico(casos, poblacion);
-//		ag.ejecutarAlgoritmo();
+		AlgoritmoGenetico ag = new AlgoritmoGenetico(casos, poblacion);
+		ag.ejecutar();
 
 	}
 

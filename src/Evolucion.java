@@ -55,9 +55,6 @@ public class Evolucion {
 		for (int i = ptoCorte1; i <= ptoCorte2; i++)
 			nuevo.set(i, padre.get(i));
 		
-		System.out.println(ptoCorte1 + " - " + ptoCorte2);
-		System.out.println(nuevo);
-		
 		int i = ptoCorte1, 
 		    j = 0;
 		while ( nuevo.contains(null) ) {
