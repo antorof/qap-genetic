@@ -14,8 +14,15 @@ public class Cromosoma extends ArrayList<Integer> {
 	 * @param tamanio Tamanio del cromosoma
 	 */
 	public Cromosoma(int tamanio) {
-		super();
-		for (int i = 0; i < tamanio; i++)
-			this.add(-1);
+		super(tamanio);
+	}
+	
+	/**
+	 * Constructor de copia. Crea un cromosoma igual.
+	 * 
+	 * @param cromosoma Cromosoma a copiar
+	 */
+	public Cromosoma(Cromosoma cromosoma) {
+		super(cromosoma);
 	}
 }
