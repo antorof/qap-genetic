@@ -6,9 +6,14 @@ import java.util.List;
  * 
  * @author Antonio Toro
  */
-public class Cromosoma extends ArrayList<Integer> {
+public class Cromosoma extends ArrayList<Integer> implements Comparable<Cromosoma>{
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Fitness del cromosoma.
+	 */
+	private int fitness = Integer.MAX_VALUE;
+
 	/**
 	 * Constructor por defecto.
 	 */
@@ -60,5 +65,18 @@ public class Cromosoma extends ArrayList<Integer> {
 			resultado += alelo + " ";
 		}
 		return resultado;
+	}
+	
+	public int getFitness() {
+		return fitness;
+	}
+
+	public void setFitness(int fitness) {
+		this.fitness = fitness;
+	}
+
+	@Override
+	public int compareTo(Cromosoma o) {
+		return this.fitness - o.fitness;
 	}
 }
