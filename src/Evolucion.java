@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
@@ -22,6 +23,10 @@ public class Evolucion {
 		
 		int ptoCorte1 = r.nextInt(tamanio),
 		    ptoCorte2 = r.nextInt(tamanio);
+		
+		while (ptoCorte1 == ptoCorte2) {
+			ptoCorte2 = r.nextInt(tamanio);
+		}
 
 		Collections.swap(cromosoma, ptoCorte1, ptoCorte2);
 		
@@ -38,19 +43,9 @@ public class Evolucion {
 	 * @param madre Cromosoma madre
 	 * @return Cromosoma que resulta de cruzar padre y madre
 	 */
-	public static Cromosoma cruzar(Cromosoma padre, Cromosoma madre) {
+	public static Cromosoma cruzar(Cromosoma padre, Cromosoma madre, int ptoCorte1, int ptoCorte2) {
 		int tamanio = padre.size();
 		Cromosoma nuevo = new Cromosoma(tamanio);
-		Random r = new Random();
-		
-		int ptoCorte1 = r.nextInt(tamanio),
-		    ptoCorte2 = r.nextInt(tamanio);
-		
-		if (ptoCorte1 > ptoCorte2) {
-			int aux = ptoCorte1;
-			ptoCorte1 = ptoCorte2;
-			ptoCorte2 = aux;
-		}
 		
 		for (int i = ptoCorte1; i <= ptoCorte2; i++)
 			nuevo.set(i, padre.get(i));
@@ -72,5 +67,32 @@ public class Evolucion {
 		}
 		
 		return nuevo;
+//		Cromosoma solucionHijo1 = new Cromosoma();
+//		
+//		// Se inicializa el hijo
+//		for(int i=0; i<tamanio; i++)
+//			solucionHijo1.add(-1);
+//		
+//		// Se copian los alelos del cromosoma p1 del intervalo en el hijo
+//		for(int i=ptoCorte1; i<=ptoCorte2; i++)
+//			solucionHijo1.set(i, padre.get(i));
+//		
+//		int aux = (ptoCorte2+1)%tamanio;
+//		int aux2 = (ptoCorte2+1)%tamanio;
+//		
+//		// Se copian en el hijo los alelos en el orden en el que aparecen
+//		// en el cromosoma p2 teniendo en cuenta que no se pueden repetir
+//		// valores en el hijo
+//		while(aux != ptoCorte1)
+//		{
+//			if(!solucionHijo1.contains(madre.get(aux2)) )
+//			{
+//				solucionHijo1.set(aux, madre.get(aux2));
+//				aux = (aux +1)%tamanio;
+//			}
+//			
+//			aux2 = (aux2 + 1)%tamanio;
+//		}
+//		return solucionHijo1;
 	}
 }
