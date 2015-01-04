@@ -33,7 +33,9 @@ public class qapgenetic {
 
 		AlgoritmoGenetico ag = new AlgoritmoGenetico(casos, poblacion);
 		ag.ejecutar();
-
+		
+		AlgoritmoGenetico ab = new AlgoritmoBaldwiniano(casos, poblacion);
+		ab.ejecutar();
 	}
 
 }

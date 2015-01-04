@@ -15,17 +15,17 @@ public class Evolucion {
 	 * @param cromosoma Cromosoma a mutar
 	 * @return Cromosoma mutado
 	 */
-	public static Cromosoma mutar(Cromosoma cromosoma) {
+	public static void mutar(Cromosoma cromosoma) {
 		int tamanio = cromosoma.size();
-		Cromosoma mutado = new Cromosoma(cromosoma);
+//		Cromosoma mutado = new Cromosoma(cromosoma);
 		Random r = new Random();
 		
 		int ptoCorte1 = r.nextInt(tamanio),
 		    ptoCorte2 = r.nextInt(tamanio);
 
-		Collections.swap(mutado, ptoCorte1, ptoCorte2);
+		Collections.swap(cromosoma, ptoCorte1, ptoCorte2);
 		
-		return mutado;
+//		return mutado;
 	}
 	
 	/**

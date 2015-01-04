@@ -13,6 +13,11 @@ public class Cromosoma extends ArrayList<Integer> implements Comparable<Cromosom
 	 * Fitness del cromosoma.
 	 */
 	private int fitness = Integer.MAX_VALUE;
+	
+	/**
+	 * Estado anterior del Cromosoma. Utilizado en el algoritmo Baldwiniano.
+	 */
+	private Cromosoma estadoAnterior;
 
 	/**
 	 * Constructor por defecto.
@@ -73,6 +78,14 @@ public class Cromosoma extends ArrayList<Integer> implements Comparable<Cromosom
 
 	public void setFitness(int fitness) {
 		this.fitness = fitness;
+	}
+	
+	public Cromosoma getEstadoAnterior() {
+		return estadoAnterior;
+	}
+	
+	public void actualizarEstadoAnterior() {
+		estadoAnterior = (Cromosoma) this.clone();
 	}
 
 	@Override
