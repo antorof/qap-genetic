@@ -1,5 +1,6 @@
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Clase que modela un algoritmo genetico estandar.
@@ -55,9 +56,17 @@ public class AlgoritmoGenetico {
 			for (int i = 0; i < tamanioPoblacion-1; i++) {
 				Cromosoma padre = poblacion.get(i),
 				          madre = poblacion.get(i+1);
+
+				int tamanio = padre.size();
+				Random r = new Random();
+				int ptoCorte1 = r.nextInt(tamanio - 1);
+				int ptoCorte2 = r.nextInt(tamanio - ptoCorte1) + ptoCorte1;
 				
-				Cromosoma hijo1 = Evolucion.cruzar(padre, madre),
-				          hijo2 = Evolucion.cruzar(madre, padre);
+				if (ptoCorte1 == ptoCorte2)
+					ptoCorte2++;
+				
+				Cromosoma hijo1 = Evolucion.cruzar(padre, madre, ptoCorte1, ptoCorte2),
+				          hijo2 = Evolucion.cruzar(madre, padre, ptoCorte1, ptoCorte2);
 
 				hijo1.setFitness(QAP.fitness(hijo1, casos.getFlujos(), casos.getDistancias()));
 				hijo2.setFitness(QAP.fitness(hijo1, casos.getFlujos(), casos.getDistancias()));
@@ -90,7 +99,7 @@ public class AlgoritmoGenetico {
 				generacionesSinMejora = 0;
 			}
 			
-			if (generacionesSinMejora > 10 || generaciones == 1000) {
+			if (generacionesSinMejora > 20 || generaciones == 1000) {
 				parar = true;
 			}
 		}
