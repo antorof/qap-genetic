@@ -34,6 +34,7 @@ public class qapgenetic {
 			Cromosoma c = new Cromosoma(Utils.generarPermutacion(0, casos.getTamanio(), casos.getTamanio()));
 			poblacion1.add(c);
 			poblacion2.add(c);
+			poblacion3.add(c);
 		}
 
 		AlgoritmoGenetico ag = new AlgoritmoGenetico(casos, poblacion1);
