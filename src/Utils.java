@@ -32,6 +32,10 @@ public class Utils {
 		return permutacion;
 	}
 	
+	/**
+	 * Imprime por la salida estandar los elementos de una lista.
+	 * @param lista Lista a imprimir
+	 */
 	public static void print(List<?> lista) {
 		for (Object elem : lista) {
 			System.out.println(elem);

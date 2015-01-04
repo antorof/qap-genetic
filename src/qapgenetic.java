@@ -15,7 +15,9 @@ public class qapgenetic {
 		
 		String fichero = args[0];
 		int tamPoblacion = Integer.parseInt(args[1]);
-		ArrayList<Cromosoma> poblacion = new ArrayList<Cromosoma>();
+		ArrayList<Cromosoma> poblacion1 = new ArrayList<Cromosoma>();
+		ArrayList<Cromosoma> poblacion2 = new ArrayList<Cromosoma>();
+		ArrayList<Cromosoma> poblacion3 = new ArrayList<Cromosoma>();
 		
 		// Se crean los casos de prueba a partir del fichero
 		Casos casos = null;
@@ -28,13 +30,16 @@ public class qapgenetic {
 		}
 	
 		// Se crea la poblacion aleatoriamente
-		for(int i = 0; i < tamPoblacion; i++)
-			poblacion.add(new Cromosoma(Utils.generarPermutacion(0, casos.getTamanio(), casos.getTamanio())));
+		for(int i = 0; i < tamPoblacion; i++) {
+			Cromosoma c = new Cromosoma(Utils.generarPermutacion(0, casos.getTamanio(), casos.getTamanio()));
+			poblacion1.add(c);
+			poblacion2.add(c);
+		}
 
-		AlgoritmoGenetico ag = new AlgoritmoGenetico(casos, poblacion);
+		AlgoritmoGenetico ag = new AlgoritmoGenetico(casos, poblacion1);
 		ag.ejecutar();
 		
-		AlgoritmoGenetico ab = new AlgoritmoBaldwiniano(casos, poblacion);
+		AlgoritmoGenetico ab = new AlgoritmoBaldwiniano(casos, poblacion2);
 		ab.ejecutar();
 	}
 
