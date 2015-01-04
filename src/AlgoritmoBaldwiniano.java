@@ -15,9 +15,7 @@ public class AlgoritmoBaldwiniano extends AlgoritmoGenetico {
 	public void ejecutar() {
 //		System.out.println("AlgoritmoBaldwiniano.ejecutar()");
 		int generaciones = 0;
-//		int mejorFitness = -1;
-//		Cromosoma mejorCromosoma;
-		List<Cromosoma> poblacionAnterior;
+		int generacionesSinMejora = 0;
 		
 		// Calculamos el fitness para cada cromosoma
 		for (Cromosoma cromosoma : poblacion) {
@@ -27,14 +25,11 @@ public class AlgoritmoBaldwiniano extends AlgoritmoGenetico {
 		// Ordenamos la poblacion respecto a su fitness
 		Collections.sort(poblacion);
 		
-//		mejorCromosoma = poblacion.get(0);
-//		mejorFitness   = mejorCromosoma.getFitness();
-		
 		boolean parar = false;
 		while(!parar) {
 			generaciones++;
 
-//			Cromosoma mejorCromosomaAnterior = poblacion.get(0);
+			Cromosoma mejorCromosomaAnterior = poblacion.get(0);
 			
 			// Cruzamos los individuos
 			for (int i = 0; i < tamanioPoblacion-1; i++) {
@@ -68,8 +63,15 @@ public class AlgoritmoBaldwiniano extends AlgoritmoGenetico {
 				poblacion.remove(poblacion.size()-1);
 
 			// Condicion de parada
-			if (generaciones == 5000) {
-//			if (mejorCromosomaAnterior.compareTo(poblacion.get(0)) <= 0) {
+//			if (generaciones == 1000) {
+			if (mejorCromosomaAnterior.compareTo(poblacion.get(0)) <= 0) {
+				generacionesSinMejora++;
+//				parar = true;
+			} else {
+				generacionesSinMejora = 0;
+			}
+			
+			if (generacionesSinMejora > 10 || generaciones == 1000) {
 				parar = true;
 			}
 		}

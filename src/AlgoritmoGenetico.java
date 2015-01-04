@@ -34,8 +34,7 @@ public class AlgoritmoGenetico {
 	public void ejecutar() {
 //		System.out.println("AlgoritmoGenetico.ejecutar()");
 		int generaciones = 0;
-		int mejorFitness = -1;
-		Cromosoma mejorCromosoma;
+		int generacionesSinMejora = 0;
 		
 		// Calculamos el fitness para cada cromosoma
 		for (Cromosoma cromosoma : poblacion) {
@@ -43,9 +42,6 @@ public class AlgoritmoGenetico {
 		}
 		// Ordenamos la poblacion respecto a su fitness
 		Collections.sort(poblacion);
-		
-		mejorCromosoma = poblacion.get(0);
-		mejorFitness   = mejorCromosoma.getFitness();
 		
 		boolean parar = false;
 		while(!parar) {
@@ -86,8 +82,15 @@ public class AlgoritmoGenetico {
 				poblacion.remove(poblacion.size()-1);
 
 			// Condicion de parada
-			if (generaciones == 5000) {
-//			if (mejorCromosomaAnterior.compareTo(poblacion.get(0)) <= 0) {
+//			if (generaciones == 1000) {
+			if (mejorCromosomaAnterior.compareTo(poblacion.get(0)) <= 0) {
+				generacionesSinMejora++;
+//				parar = true;
+			} else {
+				generacionesSinMejora = 0;
+			}
+			
+			if (generacionesSinMejora > 10 || generaciones == 1000) {
 				parar = true;
 			}
 		}
