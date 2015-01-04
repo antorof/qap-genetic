@@ -12,6 +12,46 @@ public class AlgoritmoBaldwiniano extends AlgoritmoGenetico {
 		super(casos, poblacion);
 	}
 
+	public void greedy(Cromosoma cromosoma) {
+		int mejorFitness = cromosoma.getFitness();
+	 
+        for ( int i = 0; i < cromosoma.size() - 1; i++ ) {
+            for (int j=i+1; j < cromosoma.size(); j++) {
+            	// Creamos un nuevo cromosoma a partir del actual
+            	Cromosoma c = new Cromosoma(cromosoma);
+            	
+            	// Intercambiamos los alelos
+            	Collections.swap(c, i, j);
+
+        		int nuevoFitness = QAP.fitness(c, casos.getFlujos(), casos.getDistancias());
+ 
+        		// Si el nuevo fitness es mejor sustituimos el cromosoma
+                if ( nuevoFitness < mejorFitness ) {
+                    cromosoma = c;
+                    cromosoma.setFitness(nuevoFitness);
+                    mejorFitness = nuevoFitness;
+                }
+            }
+        }
+//		int mejor;
+//		Cromosoma S = cromosoma;
+//		do {
+//			mejor = S.getFitness();
+//			for (int i = 0; i < cromosoma.size(); i++) {
+//				for (int j = i+1; j < cromosoma.size(); j++) {
+//					Cromosoma T = new Cromosoma(S);
+//					Collections.swap(T, i, j);
+//					
+//					int nuevoFitness = QAP.fitness(T, casos.getFlujos(), casos.getDistancias());
+//					if (nuevoFitness < S.getFitness()) {
+//						S = T;
+//						S.setFitness(nuevoFitness);
+//					}
+//				}
+//			}
+//		} while (S.getFitness() < mejor);
+	}
+	
 	public void ejecutar() {
 //		System.out.println("AlgoritmoBaldwiniano.ejecutar()");
 		int generaciones = 0;
@@ -55,6 +95,11 @@ public class AlgoritmoBaldwiniano extends AlgoritmoGenetico {
 					Evolucion.mutar(cromosoma);
 					cromosoma.setFitness(QAP.fitness(cromosoma, casos.getFlujos(), casos.getDistancias()));
 				}
+			}
+			
+			// Aplicamos el algoritmo greedy
+			for (Cromosoma cromosoma : poblacion) {
+				greedy(cromosoma);
 			}
 
 			// Ordenamos la poblacion respecto al fitness y eliminamos los que sobren
