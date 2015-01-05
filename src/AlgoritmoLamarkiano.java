@@ -71,6 +71,11 @@ public class AlgoritmoLamarkiano extends AlgoritmoGenetico {
 			generaciones++;
 
 			Cromosoma mejorCromosomaAnterior = poblacion.get(0);
+
+			// Aplicamos el algoritmo greedy
+			for (Cromosoma cromosoma : poblacion) {
+				greedy(cromosoma);
+			}
 			
 			// Cruzamos los individuos
 			for (int i = 0; i < tamanioPoblacion-1; i++) {
@@ -101,11 +106,6 @@ public class AlgoritmoLamarkiano extends AlgoritmoGenetico {
 					Evolucion.mutar(cromosoma);
 					cromosoma.setFitness(QAP.fitness(cromosoma, casos.getFlujos(), casos.getDistancias()));
 				}
-			}
-
-			// Aplicamos el algoritmo greedy
-			for (Cromosoma cromosoma : poblacion) {
-				greedy(cromosoma);
 			}
 			
 			// Ordenamos la poblacion respecto al fitness y eliminamos los que sobren
