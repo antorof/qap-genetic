@@ -55,6 +55,9 @@ public class AlgoritmoLamarkiano extends AlgoritmoGenetico {
 //		System.out.println("AlgoritmoGenetico.ejecutar()");
 		int generaciones = 0;
 		int generacionesSinMejora = 0;
+		long startTime, stopTime;
+		
+		startTime = System.currentTimeMillis();
 		
 		// Calculamos el fitness para cada cromosoma
 		for (Cromosoma cromosoma : poblacion) {
@@ -123,9 +126,11 @@ public class AlgoritmoLamarkiano extends AlgoritmoGenetico {
 				parar = true;
 			}
 		}
+		stopTime = System.currentTimeMillis();
 		
 		System.out.println("Numero de generaciones: " + generaciones);
 		System.out.println("Fitness: " + poblacion.get(0).getFitness());
 		System.out.println("Solucion: " + poblacion.get(0));
+		System.out.println("Tiempo transcurrido: "+ (stopTime - startTime)/1000.0+" seg");
 	}
 }
